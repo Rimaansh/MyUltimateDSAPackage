@@ -3,10 +3,11 @@ package com.dsapackage.MathForDSA;
 public class SquareRootOfANumber
 {
     public static void main(String[] args) {
-        System.out.println(checksqrt(40));
+        int n = 40, p = 3; // p is the no of precision digits
+        System.out.printf("%.3f", checksqrt(n, p));
     }
 
-    static double checksqrt(int n)
+    static double checksqrt(int n, int p)
     {
         int beg = 2;
         int end = n;
@@ -31,7 +32,7 @@ public class SquareRootOfANumber
         }
 
         double incr = 0.1;
-        int p = 3; // no of precision digits
+
 
         for(int i = 0; i < p; i++)
         {
