@@ -15,7 +15,8 @@ public class CodeforcesSquareString
 
             if (len % 2 != 0) {
                 System.out.println("NO");
-            } else {
+            } else
+            {
                 String left = s.substring(0, len/2);
                 String right = s.substring(len/2);
                 if (left.equals(right))
