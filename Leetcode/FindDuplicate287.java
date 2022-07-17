@@ -31,4 +31,5 @@ class FindDuplicate287
         arr[first] = arr[sec];
         arr[sec] = temp;
     }
+
 }
