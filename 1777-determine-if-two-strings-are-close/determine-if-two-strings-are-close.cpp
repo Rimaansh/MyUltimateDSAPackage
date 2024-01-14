@@ -14,7 +14,7 @@ public:
             arr1[word1[i] - 'a']++;
             arr2[word2[i] - 'a']++;
 
-            // mpp1[word1[i]]++;
+            //mpp1[word1[i]]++;
             mpp2[word2[i]]++;
         }
 
@@ -26,11 +26,12 @@ public:
         sort(arr1.begin(), arr1.end());
         sort(arr2.begin(), arr2.end());
 
-        for(int i = 1; i<=26; i++)
-        {
-            if(arr1[i] != arr2[i]) return false;
-        }
+        // for(int i = 1; i<=26; i++)
+        // {
+        //     if(arr1[i] != arr2[i]) return false;
+        // }
 
-        return true;
+        // return true;
+        return arr1 == arr2;
     }
 };
