@@ -14,7 +14,7 @@ public:
             arr1[word1[i] - 'a']++;
             arr2[word2[i] - 'a']++;
 
-            mpp1[word1[i]]++;
+            // mpp1[word1[i]]++;
             mpp2[word2[i]]++;
         }
 
