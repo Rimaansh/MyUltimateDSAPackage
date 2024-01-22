@@ -3,7 +3,7 @@ public:
     int solve(vector<int>& prices, int ind, int buy, vector<vector<vector<int>>>& dp, int transactions)
     {
         if(ind == prices.size()) return 0;
-        if(transactions ==2) return 0;
+        if(transactions == 2) return 0;
         if(dp[ind][buy][transactions] != -1) return dp[ind][buy][transactions];
 
         if(buy)
