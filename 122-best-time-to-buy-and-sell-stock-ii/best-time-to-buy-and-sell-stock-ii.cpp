@@ -7,7 +7,8 @@ public:
 
         if(buy)
         {
-            int a = solve(prices, ind+1, 0, dp) - prices[ind]; // decide to buy the stock
+            int a = solve(prices, ind, 0, dp) - prices[ind]; // decide to buy the stock
+            // no ind+1 because you can buy and sell on the same day, it is a redundant
             int b = solve(prices, ind+1, 1, dp) + 0; // decide not to buy the stock
             return dp[ind][buy] = max(a, b);
         }
