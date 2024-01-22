@@ -1,32 +1,32 @@
 class Solution {
 public:
-    int solve(vector<int>& prices, int ind, int buy, vector<vector<vector<int>>>& dp, int transactions)
+    int solve(vector<int>& prices, int ind, int id, vector<vector<int>>& dp)
     {
         if(ind == prices.size()) return 0;
-        if(transactions == 2) return 0;
-        if(dp[ind][buy][transactions] != -1) return dp[ind][buy][transactions];
+        if(id == 4) return 0;
+        if(dp[ind][id] != -1) return dp[ind][id];
 
-        if(buy)
-            {
-                int a = solve(prices, ind+1, 0, dp, transactions) - prices[ind]; 
-                // decide to buy the stock
-                int b = solve(prices, ind+1, 1, dp, transactions) + 0; 
-                // decide not to buy the stock
-                return dp[ind][buy][transactions] = max(a, b);
-            }
-            else // if(!buy)
-            {
-                int a = solve(prices, ind+1, 1, dp, transactions+1) + prices[ind]; 
-                // decide to sell the stock
-                int b = solve(prices, ind+1, 0, dp, transactions) ; 
-                // decide not to sell the stock
-                return dp[ind][buy][transactions] = max(a, b);
-            }
+        if(id%2 == 0)
+        {
+            int a = solve(prices, ind+1, id+1, dp) - prices[ind]; 
+            // decide to buy the stock
+            int b = solve(prices, ind+1, id, dp) + 0; 
+            // decide not to buy the stock
+            return dp[ind][id] = max(a, b);
+        }
+        else // if(!buy)
+        {
+            int a = solve(prices, ind+1, id+1, dp) + prices[ind]; 
+            // decide to sell the stock
+            int b = solve(prices, ind+1, id, dp); 
+            // decide not to sell the stock
+            return dp[ind][id] = max(a, b);
+        }
     }
 
     int maxProfit(vector<int>& prices) 
     {
-        vector<vector<vector<int>>> dp(prices.size()+1, vector<vector<int>>(2, vector<int>(3, -1)));
-        return solve(prices, 0, 1, dp, 0);
+        vector<vector<int>> dp(prices.size()+1, vector<int>(4, -1));
+        return solve(prices, 0, 0, dp);
     }
 };
