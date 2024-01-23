@@ -1,12 +1,10 @@
 class Solution {
 public:
-    int solve(vector<string>& arr, vector<int>& dp, int ind, unordered_set<char>& st)
+    int solve(vector<string>& arr, int ind, unordered_set<char>& st)
     {
         if(ind < 0) {
             return st.size();
         }
-
-        //if(dp[ind] != -1) return dp[ind];
 
         bool flag = true;
         string word = arr[ind];
@@ -43,7 +41,7 @@ public:
                 st.insert(it);
             } 
 
-            pick = solve(arr, dp, ind-1, st);
+            pick = solve(arr, ind-1, st);
 
             for(auto it: word){
                 st.erase(it);
@@ -51,17 +49,16 @@ public:
         }
 
         //not pick the string
-        notPick = solve(arr, dp, ind-1, st);
+        notPick = solve(arr, ind-1, st);
 
-        return dp[ind] = max(pick, notPick);
+        return max(pick, notPick);
     }
 
     int maxLength(vector<string>& arr) 
     {
         int n = arr.size();
         unordered_set<char> st;
-        vector<int> dp(n, -1);
 
-        return solve(arr, dp, n-1, st);
+        return solve(arr, n-1, st);
     }
 };
