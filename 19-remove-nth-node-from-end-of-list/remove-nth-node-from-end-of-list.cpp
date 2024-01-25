@@ -24,7 +24,8 @@ public:
 
         if(nodeLen == n){
             return head->next;
-        }
+        } //this means whenever we are trying to remove the last node from the end
+          //we are actually removing the first node of the linkedlist, so just return "head->next"
 
         nodeLen = nodeLen - n - 1; // 5 - 2 - 1 = 2
         // 2 - 1 - 1 = 0
