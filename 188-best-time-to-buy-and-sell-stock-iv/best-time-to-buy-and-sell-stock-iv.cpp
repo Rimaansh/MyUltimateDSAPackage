@@ -6,7 +6,7 @@ public:
 
         if(dp[transaction][ind] != -1) return dp[transaction][ind];
 
-        if(transaction % 2 == 0)
+        if(transaction % 2 == 0) //signifies we have to buy
         {
             //decide to buy
             int a = - prices[ind] + solve(k, prices, transaction+1, ind+1, dp);
@@ -16,7 +16,7 @@ public:
 
             return dp[transaction][ind] = max(a, b);
         }
-        else // transaction % 2 == 1
+        else // transaction % 2 == 1 //signifies we have to buy
         {
             //decide to sell
             int a = prices[ind] + solve(k, prices, transaction+1, ind+1, dp);
