@@ -19,9 +19,26 @@ public:
         return dp[ind][prev+1] = max(a, b);
     }
 
-    int lengthOfLIS(vector<int>& nums) {
-        int maxVal = *max_element(nums.begin(), nums.end());
-        vector<vector<int>> dp(nums.size()+1, vector<int>(nums.size()+1, -1));
-        return solve(nums, 0, -1, dp);
+    int lengthOfLIS(vector<int>& arr) {
+        // int maxVal = *max_element(nums.begin(), nums.end());
+        // vector<vector<int>> dp(nums.size()+1, vector<int>(nums.size()+1, -1));
+        // return solve(nums, 0, -1, dp);
+
+        int n = arr.size();
+        vector<vector<int>> dp(n+1, vector<int>(n+1, 0));
+        for(int ind = n-1; ind >= 0; ind--)
+        {
+            for(int prev_ind = ind-1; prev_ind >= -1; prev_ind--)
+            {
+                int len = 0 + dp[ind+1][prev_ind+1];
+
+                if(prev_ind == -1 || arr[ind] > arr[prev_ind]){
+                    len = max(len, 1 + dp[ind+1][ind+1]);
+                }
+
+                dp[ind][prev_ind+1] = len;
+            }	
+        }
+        return dp[0][0];
     }
 };
