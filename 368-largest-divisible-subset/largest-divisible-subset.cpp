@@ -3,27 +3,35 @@ public:
     vector<int> largestDivisibleSubset(vector<int>& nums) {
         int n = nums.size();
         sort(nums.begin(), nums.end());
-        
-        vector<vector<int>> dp(n);
-        dp[n-1] = {nums[n-1]};
+        vector<int> dp(n, 1), hash(n);
 
-        int ans_size = 1, ans_index = n-1;
-        for(int i=n-2; i>=0; i--){
-            int sub_ans_size = 0, sub_ans_index = -1;
-            for(int j=i+1; j<n; j++){
-                if(nums[j]%nums[i] == 0 && dp[j].size() > sub_ans_size){
-                    sub_ans_size = dp[j].size();
-                    sub_ans_index = j;
+        int lastInd = 0, maxi = 1;
+
+        for(int ind = 0; ind < n; ind++)
+        {
+            hash[ind] = ind;
+            for(int prev_ind = 0; prev_ind < ind; prev_ind++)
+            {
+                if(nums[ind] % nums[prev_ind] == 0 && (1+dp[prev_ind]) > dp[ind])
+                {
+                    dp[ind] = 1 + dp[prev_ind];
+                    hash[ind] = prev_ind;
                 }
             }
-            dp[i] = {nums[i]};
-            if(sub_ans_index != -1) dp[i].insert(dp[i].end(), dp[sub_ans_index].begin(), dp[sub_ans_index].end());
-            if(ans_size < dp[i].size()){ 
-                ans_size = dp[i].size();
-                ans_index = i;
+            if(dp[ind] > maxi)
+            {
+                maxi = dp[ind];
+                lastInd = ind;
             }
         }
-        
-        return dp[ans_index];
+
+        vector<int> res;
+        res.push_back(nums[lastInd]);
+        while(hash[lastInd] != lastInd){
+            lastInd = hash[lastInd];
+            res.push_back(nums[lastInd]);
+        }
+        reverse(res.begin(), res.end());
+        return res;
     }
 };
