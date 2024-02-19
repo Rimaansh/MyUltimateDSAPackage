@@ -12,7 +12,7 @@ public:
             if(arr[mid] == target) return mid;
             else
             {
-                if(arr[0] <= arr[mid]) // means that the left half is sorted, so directly check
+                if(arr[lo] <= arr[mid]) // means that the left half is sorted, so directly check
                 {
                     if(arr[lo] <= target && target <= arr[mid]){
                         hi = mid - 1;
