@@ -19,7 +19,7 @@ public:
     int minDays(vector<int>& bloomDay, int m, int k) 
     {
         int n = bloomDay.size();
-        if(m > n/k) return -1;
+        if(m > n/k) return -1; // checking (m*k > n), use divide to avoid integer overflow
 
         int lo = *min_element(bloomDay.begin(), bloomDay.end());
         int hi = *max_element(bloomDay.begin(), bloomDay.end());
