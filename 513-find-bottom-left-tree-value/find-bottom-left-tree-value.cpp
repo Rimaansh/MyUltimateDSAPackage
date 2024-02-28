@@ -30,6 +30,7 @@ public:
         ans.first = root->val;
         ans.second = 0;
 
+        if(!root->left && !root->right) return root->val;
         solve(root, 0, ans);
 
         return ans.first;
