@@ -11,7 +11,6 @@ public:
             if(s1 == s2) return num;
             else
             {
-                // s1 = s1 - num;
                 s2 = s2 + num;
                 num--;
                 s1 = s1 - num;
