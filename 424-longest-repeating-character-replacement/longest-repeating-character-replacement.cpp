@@ -1,22 +1,32 @@
 class Solution {
 public:
-    int characterReplacement(string s, int k) {
-    unordered_map<char, int> mpp;
-    int l = 0, res = 0, maxFreq = 0;
+    int characterReplacement(string s, int k) 
+    {
+        vector<int> arr(26, 0);
+        int l = 0, r = 0, res = 0, maxFreq = 0;
+        int n = s.length();
 
-    for (int r = 0; r < s.length(); ++r) {
-        mpp[s[r]]++;
-        maxFreq = max(maxFreq, mpp[s[r]]); // Update max frequency
+        while(r < n)
+        {
+            int i = s[r] - 'A';
+            arr[i]++;
+            maxFreq = max(maxFreq, arr[s[r] - 'A']);
 
-        // Check if the window size exceeds k replacements
-        if (r - l + 1 - maxFreq > k) {
-            mpp[s[l]]--; // Shrink the window from the left
-            l++;
+            //"if" instead of "while", since there is no point of reducing the maxFreq
+            //as the next ans. will always be > the current maxFreq, so just remove 
+            //characters one by one
+            if((r-l+1) - maxFreq > k) //no. of chars that can be replaced are more than allowed
+            {
+                int j = s[l] - 'A';
+                arr[j]--;
+                // for(auto it: arr) maxFreq = max(maxFreq, it); 
+                //removing the above reduces the time complexity
+                l++;
+            }
+            
+            res = max(res, r - l + 1);
+            r++;
         }
-
-        res = max(res, r - l + 1);
+        return res;
     }
-
-    return res;
-}
 };
