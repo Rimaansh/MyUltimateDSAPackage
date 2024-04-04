@@ -8,8 +8,7 @@ public:
 
         while(r < n)
         {
-            int i = s[r] - 'A';
-            arr[i]++;
+            arr[s[r] - 'A']++;
             maxFreq = max(maxFreq, arr[s[r] - 'A']);
 
             //"if" instead of "while", since there is no point of reducing the maxFreq
@@ -17,8 +16,7 @@ public:
             //characters one by one
             if((r-l+1) - maxFreq > k) //no. of chars that can be replaced are more than allowed
             {
-                int j = s[l] - 'A';
-                arr[j]--;
+                arr[s[l] - 'A']--;
                 // for(auto it: arr) maxFreq = max(maxFreq, it); 
                 //removing the above reduces the time complexity
                 l++;
