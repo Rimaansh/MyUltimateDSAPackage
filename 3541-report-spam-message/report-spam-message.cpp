@@ -7,6 +7,7 @@ public:
         int c = 0;
         for(auto it: bannedWords) if(mpp[it] > 0) {
             c+=mpp[it];
+            if(c>=2) return true;
             mpp[it] = -1;
         }
 
