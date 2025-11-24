@@ -11,22 +11,16 @@
  */
 class Solution {
 public:
-    int solve(TreeNode* root, int sum)
+    int func(TreeNode* root, int val)
     {
         if(!root) return 0;
 
-        int left = 0, right = 0;
+        if(!root->left && !root->right) return (val*10 + root->val);
 
-        if(!root->left && !root->right) return sum*10+root->val;
-
-        left = solve(root->left, sum*10 + root->val);
-        right = solve(root->right, (sum*10 + root->val));
-
-        return left + right;
+        return func(root->left, val*10 + root->val) + func(root->right, val*10 + root->val);
     }
-
+ 
     int sumNumbers(TreeNode* root) {
-        int sum = 0;
-        return solve(root, sum);
+        return func(root, 0);
     }
 };
