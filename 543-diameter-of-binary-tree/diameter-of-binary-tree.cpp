@@ -11,19 +11,21 @@
  */
 class Solution {
 public:
-    int solve(TreeNode* root, int& dia)
+    int func(TreeNode* root, int& dia)
     {
         if(!root) return 0;
 
-        int left = solve(root->left, dia);
-        int right = solve(root->right, dia);
+        int left = func(root->left, dia);
+        int right = func(root->right, dia);
+
         dia = max(dia, left+right);
         return 1 + max(left, right);
     }
 
-    int diameterOfBinaryTree(TreeNode* root) {
+    int diameterOfBinaryTree(TreeNode* root) 
+    {
         int dia = 0;
-        solve(root, dia);
+        func(root, dia);    
         return dia;
     }
 };
