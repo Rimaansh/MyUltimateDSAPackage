@@ -4,9 +4,6 @@ class Solution(object):
             return r >= 0 and c >= 0 and r < n and c < m and grid[r][c] == '1'
 
         def dfs(i, j):
-            if (i, j) in visited:
-                return 
-            
             visited.add((i, j))
 
             for dr, dc in directions:
