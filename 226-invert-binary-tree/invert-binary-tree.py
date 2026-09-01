@@ -13,8 +13,7 @@ class Solution(object):
             helper(root.left)
             helper(root.right)
 
-            if root.left or root.right:
-                root.left, root.right = root.right, root.left
+            root.left, root.right = root.right, root.left
             
             return root
 
