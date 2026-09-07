@@ -4,10 +4,10 @@ class Solution:
         majEle = None
 
         for num in nums:
-            if cnt == 0:
-                majEle = num
+            if num == majEle:
                 cnt += 1
-            elif num == majEle:
+            elif cnt == 0:
+                majEle = num
                 cnt += 1
             else:
                 cnt -= 1
