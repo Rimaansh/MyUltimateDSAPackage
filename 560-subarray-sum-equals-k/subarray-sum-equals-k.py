@@ -7,8 +7,7 @@ class Solution(object):
             sum += num
             diff = sum - k
 
-            if diff in prefixMap:
-                res += prefixMap[diff]
+            res += prefixMap.get(diff, 0)
             
             prefixMap[sum] = prefixMap.get(sum, 0) + 1
         
