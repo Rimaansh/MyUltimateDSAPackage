@@ -1,52 +1,53 @@
-class Node:
+class TrieNode(object):
     def __init__(self):
         self.links = [None] * 26
         self.flag = False
-    
-    def containsKey(self, ch):
-        return self.links[ord(ch) - ord('a')] is not None
 
-    def put(self, ch, node):
-        self.links[ord(ch) - ord('a')] = node
-    
-    def get(self, ch):
-        return self.links[ord(ch) - ord('a')]
-    
-    def setEnd(self):
-        self.flag = True
-
-    def isEnd(self):
-        return self.flag
-
-class Trie:
+class Trie(object):
     def __init__(self):
-        self.root = Node()
-        
+        self.root = TrieNode()
+
     def insert(self, word):
         node = self.root
+
         for ch in word:
-            if not node.containsKey(ch):
-                node.put(ch, Node())
-            
-            node = node.get(ch)
-        
-        node.setEnd()
+            idx = ord(ch) - ord('a')
+
+            if node.links[idx] is None:
+                node.links[idx] = TrieNode()
+
+            node = node.links[idx]
+
+        node.flag = True
 
     def search(self, word):
         node = self.root
+
         for ch in word:
-            if not node.containsKey(ch):
+            idx = ord(ch) - ord('a')
+
+            if node.links[idx] is None:
                 return False
-            
-            node = node.get(ch)
-        
-        return node.isEnd()
+
+            node = node.links[idx]
+
+        return node.flag
 
     def startsWith(self, prefix):
         node = self.root
+
         for ch in prefix:
-            if not node.containsKey(ch):
+            idx = ord(ch) - ord('a')
+
+            if node.links[idx] is None:
                 return False
-            
-            node = node.get(ch)
+
+            node = node.links[idx]
+
         return True
+
+# Your Trie object will be instantiated and called as such:
+# obj = Trie()
+# obj.insert(word)
+# param_2 = obj.search(word)
+# param_3 = obj.startsWith(prefix)
