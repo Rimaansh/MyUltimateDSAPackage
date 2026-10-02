@@ -8,6 +8,9 @@ class Node(object):
 
 class Solution(object):
     def cloneGraph(self, node):
+        if not node:
+            return node
+
         oldToNew = {}
 
         def dfs(node):
@@ -17,8 +20,5 @@ class Solution(object):
                     oldToNew[node].neighbors.append(dfs(nei))
                 
             return oldToNew[node]
-        
-        if not node:
-            return node
-
+            
         return dfs(node)
